@@ -1,13 +1,13 @@
+import { Header, MainLayout, NewsContainer } from "@/components";
+import { ITEMS } from "@/helpers/ItemsHeader";
 import { useFetch } from "@/hooks/useFetch";
-import { useDispatch } from "react-redux";
-import { Header, MainLayout, NewsContainer, SearchSection } from "@/components";
 import { setNews } from "@/redux/states/news";
 import { useEffect } from "react";
-import { ITEMS } from "@/helpers/ItemsHeader";
+import { useDispatch } from "react-redux";
 
 export default function Home() {
   const dispatch = useDispatch();
-  const { data, isLoading } = useFetch();
+  const { data, isLoading } = useFetch(true);
 
   useEffect(() => {
     dispatch(setNews(data));
@@ -16,7 +16,7 @@ export default function Home() {
   return (
     <MainLayout>
       <Header items={ITEMS} />
-      <SearchSection />
+      <h3>Saved News</h3>
       <NewsContainer isLoading={isLoading} />
     </MainLayout>
   );
